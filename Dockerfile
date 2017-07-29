@@ -14,6 +14,8 @@ RUN a2enmod rewrite \
 COPY config/vhost/* /etc/apache2/sites-available/
 COPY config/php.ini /usr/local/etc/php/
 
+RUN a2ensite symfony
+
 # PECL / extension builds and install
 RUN pecl install xdebug \
  && docker-php-ext-enable xdebug \
