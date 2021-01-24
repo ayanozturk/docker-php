@@ -1,7 +1,7 @@
 FROM php:7.4-apache
 
 RUN apt-get update -y \
- && apt-get install -y unzip curl libicu-dev libgmp-dev git vim-tiny \
+ && apt-get install -y unzip curl libicu-dev libgmp-dev git vim-tiny libzip-dev \
   && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
   RUN pecl install xdebug \
