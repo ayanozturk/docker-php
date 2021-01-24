@@ -8,6 +8,8 @@ RUN apt-get update -y \
    && docker-php-ext-enable xdebug \
     && docker-php-ext-install bcmath intl sockets opcache pdo_mysql gmp
 
+  RUN docker-php-ext-install zip
+
 # Apache configuration
 RUN a2enmod rewrite \
  && a2enmod ssl \
