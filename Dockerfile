@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.0.6-apache
 
 RUN apt-get update -y \
  && apt-get install -y unzip curl libicu-dev libgmp-dev git vim-tiny libzip-dev \
