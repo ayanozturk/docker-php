@@ -1,14 +1,11 @@
 FROM php:8-apache
 
 RUN apt-get update -y \
- && apt-get install -y unzip curl libicu-dev libgmp-dev git vim-tiny libzip-dev \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
+ && apt-get install -y unzip curl libicu-dev libgmp-dev git vim-tiny libzip-dev libpng-dev
 
-  RUN pecl install xdebug \
-   && docker-php-ext-enable xdebug \
-    && docker-php-ext-install bcmath intl sockets opcache pdo_mysql gmp
-
-  RUN docker-php-ext-install zip
+RUN pecl install xdebug \
+ && docker-php-ext-enable xdebug \
+ && docker-php-ext-install bcmath intl sockets opcache pdo_mysql gmp zip gd
 
 # Apache configuration
 RUN a2enmod rewrite \
@@ -20,3 +17,6 @@ RUN a2enmod rewrite \
    RUN a2ensite php-app
 
    RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# clean up
+RUN rm -rf /var/lib/apt/lists/* /var/cache/apk/*
